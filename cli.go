@@ -11,7 +11,7 @@ import "regexp"
 import "strconv"
 import "io/ioutil"
 
-import "github.com/Craftserve/godaemon/mcstatus"
+import "github.com/Craftserve/mcstatus"
 
 var COLOR_EXPR = regexp.MustCompile("(?i)§[a-z]")
 

@@ -98,6 +98,10 @@ func CheckStatusNewConn(conn *net.TCPConn, host string, port uint16) (*Minecraft
 }
 
 func (status *MinecraftStatus) SerializeNew() ([]byte, error) {
+	if status.Raw != nil {
+		return status.Raw.MarshalJSON()
+	}
+
 	d := &minecraftStatusNew{}
 	if status.NewProtocol {
 		d.Version.Protocol = status.ProtocolVersion
@@ -106,7 +110,7 @@ func (status *MinecraftStatus) SerializeNew() ([]byte, error) {
 	d.Players.Max = status.Slots
 	d.Players.Online = status.Players
 	for _, v := range status.PlayersSample {
-		r := minecraftStatusNewPlayer{Name: v}
+		r := minecraftStatusNewPlayer{Name: v, Id: "d0223ac4-a35d-43dc-96de-5fecdb8feecd"} // completely random uuid
 		d.Players.Sample = append(d.Players.Sample, r)
 	}
 	d.Description = status.Description

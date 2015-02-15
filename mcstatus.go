@@ -23,7 +23,7 @@ type MinecraftStatus struct {
 var LAST_NEW_PROTOCOL int = 4
 var LAST_OLD_PROTOCOL uint8 = 74
 var DEADLINE = 3 * time.Second
-var COLOR_EXPR = regexp.MustCompile("(?i)§[a-z]")
+var COLOR_EXPR = regexp.MustCompile("(?i)§[a-z0-9]")
 
 // check minecraft status, first tries new protocol, later older
 func CheckStatus(addr *net.TCPAddr) (status *MinecraftStatus, ping time.Duration, err error) {
